@@ -1,0 +1,16 @@
+/* body{
+    font-family: "Poppins", sans-serif;
+    
+  }
+  *{
+    padding: 0;
+    margin: 0;
+  } */
+
+  .description {
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Limit to 3 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
