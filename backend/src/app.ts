@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(cookieParser())
 app.use(
     cors({
-        origin: ["http://localhost:5173"],
+        origin: ["http://localhost:5173","https://my-article-eosin.vercel.app/"],
         methods: ["PUT", "PATCH", "GET", "POST", "DELETE"],
         allowedHeaders: ["Content-Type", "Authorization"],
         credentials: true,
