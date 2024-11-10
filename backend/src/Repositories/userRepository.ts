@@ -251,4 +251,14 @@ export class UserRepository {
             return null;
         }
     }
+    async getAllArticleDetailsById(articleId: string): Promise<any | null> {
+        try {
+            return await Article.findOne({_id:articleId}).populate("userId")
+
+        return null;
+        } catch (error) {
+            console.log(error as Error);
+            return null;
+        }
+    }
 }

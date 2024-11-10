@@ -321,5 +321,22 @@ class UserControler {
             }
         });
     }
+    getSingleArticle(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                console.log(req.params);
+                const result = yield this.userServices.getArticleDetails(req.params.id);
+                if (result) {
+                    res.status(200).json({ success: true, result: result });
+                }
+                else {
+                    res.status(BAD_REQUEST).json({ success: false, message: "Something Went wrong" });
+                }
+            }
+            catch (error) {
+                next(error);
+            }
+        });
+    }
 }
 exports.UserControler = UserControler;

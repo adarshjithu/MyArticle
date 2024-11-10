@@ -297,5 +297,16 @@ class UserServices {
             }
         });
     }
+    getArticleDetails(articleId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                return yield this.userRepository.getAllArticleDetailsById(articleId);
+            }
+            catch (error) {
+                console.log(error);
+                return null;
+            }
+        });
+    }
 }
 exports.UserServices = UserServices;

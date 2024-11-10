@@ -1,8 +1,9 @@
 import axios from "axios";
 import toast from "react-hot-toast";
-
+import {store} from '../app/store'
+import { userLogout } from "../app/features/auth";
  const axiosInstance = axios.create({
-    baseURL: "http://localhost:3000",
+    baseURL: "https://www.myarticle.shop",
     headers: {
         "Content-Type": "application/json",
     },
@@ -18,7 +19,13 @@ axiosInstance.interceptors.response.use((response)=>{
     return response;
 },(error)=>{
     console.log(error.response.data.message)
-    toast.error(error?.response?.data?.message)
+    if(error?.response?.data?.message=='Refresh Token Expired'){
+     store.dispatch(userLogout())
+    }
+    if(error?.response?.data?.message!=='Refresh Token Expired'){
+
+        toast.error(error?.response?.data?.message)
+    }
     return Promise.reject(error);
 })
 

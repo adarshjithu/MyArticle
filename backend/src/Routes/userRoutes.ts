@@ -26,4 +26,5 @@ userRouter.get('/articles',authenticate,(req,res,next)=>controler.getAllArticles
 userRouter.get("/article/like",authenticate,(req,res,next)=>controler.likeArticle(req,res,next))
 userRouter.get("/article/unlike",authenticate,(req,res,next)=>controler.unlikeArticle(req,res,next))
 userRouter.get("/article/block",authenticate,(req,res,next)=>controler.blockArticle(req,res,next))
+userRouter.get("/article/:id",authenticate,(req,res,next)=>controler.getSingleArticle(req,res,next))
 export default userRouter;

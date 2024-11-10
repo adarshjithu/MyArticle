@@ -146,3 +146,12 @@ export const blockUserArticle = async (articleId) => {
         console.log(error.message)
     }
 };
+export const getSingleArticle = async (articleId) => {
+    try {
+     
+    const response = await axiosInstance.get(`/article/${articleId}`)
+    return response
+    } catch (error) {
+        console.log(error.message)
+    }
+};

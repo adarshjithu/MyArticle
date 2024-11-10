@@ -252,4 +252,12 @@ export class UserServices {
             return null;
         }
     }
+    async getArticleDetails(articleId:string): Promise<Record<string,any> | null> {
+        try {
+            return await this.userRepository.getAllArticleDetailsById(articleId)
+        } catch (error) {
+            console.log(error as Error);
+            return null;
+        }
+    }
 }

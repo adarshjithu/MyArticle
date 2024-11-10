@@ -4,6 +4,7 @@ import ArticlesPage from "../../Components/AddArticle";
 import { deleteUserArticle, getArticles } from "../../Services/apiService/userServices";
 import { getDayDifference } from "../../Utils/Validations";
 import EditArticleMocal from "../../Components/EditArticle";
+import { useNavigate } from "react-router-dom";
 
 const Articles = () => {
     const [open, setOpen] = useState(false);
@@ -11,6 +12,7 @@ const Articles = () => {
     const [isEditOpen, setIsEditOpen] = useState(false);
     const [articleData, setArticleData] = useState({});
     const [load, setLoad] = useState(false);
+    const navigate = useNavigate()
 
     // Sample categories for the dropdown
     const categories = ["Technology", "Health", "Business", "Lifestyle", "Education"];
@@ -50,23 +52,7 @@ const Articles = () => {
                             + Add New Article
                         </button>
 
-                        {/* Dropdown for article category */}
-                        <select
-                            className="w-40 px-3 py-2 border border-gray-300 rounded-md text-gray-700 focus:outline-none focus:ring-2 focus:ring-green-400"
-                            value={""}
-                            onChange={""}
-                        >
-                            <option value="">All Categories</option>
-
-                            <option>asdfas</option>
-                        </select>
-
-                        {/* Search bar for articles */}
-                        <input
-                            type="text"
-                            placeholder="Search articles..."
-                            className="flex-grow px-3 py-2 border border-gray-300 rounded-md text-gray-700 focus:outline-none focus:ring-2 focus:ring-green-400"
-                        />
+                       
                     </div>
 
                     {isEditOpen && articleData && (
@@ -89,7 +75,7 @@ const Articles = () => {
                                     </div>
                                     {/* main */}
 
-                                    <div className="w-[60%]">
+                                    <div className="w-[60%]" onClick={()=>navigate(`/article-details?id=${article?._id}`)}>
                                         <div className="h-[10%]">
                                             <h2 className="text-xl font-semibold text-gray-800">{article.title}</h2>
                                         </div>

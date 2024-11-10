@@ -299,5 +299,17 @@ class UserRepository {
             }
         });
     }
+    getAllArticleDetailsById(articleId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                return yield ArticleModel_1.default.findOne({ _id: articleId }).populate("userId");
+                return null;
+            }
+            catch (error) {
+                console.log(error);
+                return null;
+            }
+        });
+    }
 }
 exports.UserRepository = UserRepository;

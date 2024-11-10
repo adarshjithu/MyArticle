@@ -6,11 +6,10 @@ import { Toaster } from "react-hot-toast";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./Pages/Login/Login";
 
-
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import Settings from "./Pages/Settings/Settings";
 import MyArticle from "./Pages/MyArticle/Articles";
-
+import ArticleDetailModal from "./Components/ArticleDetailModal";
 
 function App() {
     return (
@@ -20,7 +19,8 @@ function App() {
                 <Routes>
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/login" element={<Login />} />
-    
+                    <Route path="/article-details" element={<ArticleDetailModal />} />
+
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/" element={<Dashboard />} />
                     <Route path="/settings" element={<Settings />} />

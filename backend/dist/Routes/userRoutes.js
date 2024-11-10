@@ -30,4 +30,5 @@ userRouter.get('/articles', authMiddleWare_1.authenticate, (req, res, next) => c
 userRouter.get("/article/like", authMiddleWare_1.authenticate, (req, res, next) => controler.likeArticle(req, res, next));
 userRouter.get("/article/unlike", authMiddleWare_1.authenticate, (req, res, next) => controler.unlikeArticle(req, res, next));
 userRouter.get("/article/block", authMiddleWare_1.authenticate, (req, res, next) => controler.blockArticle(req, res, next));
+userRouter.get("/article/:id", authMiddleWare_1.authenticate, (req, res, next) => controler.getSingleArticle(req, res, next));
 exports.default = userRouter;

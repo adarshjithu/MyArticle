@@ -262,4 +262,17 @@ export class UserControler {
             next(error);
         }
     }
+    async getSingleArticle(req: Request, res: Response, next: NextFunction): Promise<void> {
+        try {
+            console.log(req.params)
+            const result = await this.userServices.getArticleDetails(req.params.id as string);
+            if (result) {
+                res.status(200).json({success:true,result:result});
+            } else {
+                res.status(BAD_REQUEST).json({ success: false, message: "Something Went wrong" });
+            }
+        } catch (error) {
+            next(error);
+        }
+    }
 }
