@@ -112,7 +112,7 @@ export const deleteUserArticle = async (articleId) => {
 export const getAllArticles = async (articleId) => {
     try {
      
-    const response = await axiosInstance.get(`/articles`)
+    const response = await axiosInstance.get(`/articles?type=${articleId}`)
     return response
     } catch (error) {
         console.log(error.message)

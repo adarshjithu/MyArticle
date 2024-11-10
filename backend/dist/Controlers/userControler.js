@@ -260,7 +260,7 @@ class UserControler {
     getAllArticles(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const result = yield this.userServices.getAllArticles(req.userId);
+                const result = yield this.userServices.getAllArticles(req.userId, req.query.type);
                 if (result) {
                     res.status(OK).json({ success: true, result: result });
                 }

@@ -253,10 +253,10 @@ class UserServices {
             }
         });
     }
-    getAllArticles(userId) {
+    getAllArticles(userId, type) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                return yield this.userRepository.getAllArticlesById(userId);
+                return yield this.userRepository.getAllArticlesById(userId, type);
             }
             catch (error) {
                 console.log(error);

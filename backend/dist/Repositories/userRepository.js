@@ -220,15 +220,24 @@ class UserRepository {
             }
         });
     }
-    getAllArticlesById(userId) {
+    getAllArticlesById(userId, type) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const user = yield userModel_1.default.findOne({ _id: userId });
-                const interests = user === null || user === void 0 ? void 0 : user.interests;
-                const articles = yield ArticleModel_1.default.find({ category: { $in: interests }, blocks: { $nin: userId } })
-                    .sort({ _id: -1 })
-                    .populate("userId");
-                return articles;
+                console.log(type);
+                if (type == 'All') {
+                    const user = yield userModel_1.default.findOne({ _id: userId });
+                    const interests = user === null || user === void 0 ? void 0 : user.interests;
+                    const articles = yield ArticleModel_1.default.find({ category: { $in: interests }, blocks: { $nin: userId } })
+                        .sort({ _id: -1 })
+                        .populate("userId");
+                    return articles;
+                }
+                else {
+                    const articles = yield ArticleModel_1.default.find({ category: type })
+                        .sort({ _id: -1 })
+                        .populate("userId");
+                    return articles;
+                }
             }
             catch (error) {
                 console.log(error);

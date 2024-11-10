@@ -6,25 +6,40 @@ import Header from "../Header/Header";
 import ArticleCard from "../../Components/ArticleCard";
 import { getAllArticles } from "../../Services/apiService/userServices";
 import ArticleDetailModal from "../../Components/ArticleDetailModal";
+import NoArticlesPage from "../../Components/NoArticle";
+
 
 const Dashboard = () => {
     const dispatch = useDispatch();
     const user = useSelector((data) => data?.auth?.userData);
     const navigate = useNavigate();
     const [articles, setArticles] = useState([]);
+    const [seletedCategory, setSeletedCategory] = useState('All');
+    const [preference, setPreference] = useState([
+        "All",
+        "Technology",
+        "Health",
+        "Business",
+        "Lifestyle",
+        "Programming",
+        "Design",
+        "Education",
+        "Writing",
+    ]);
 
+ 
     useEffect(() => {
         if (!user) {
             navigate("/login");
         }
 
         const fechData = async () => {
-            const res = await getAllArticles();
+            const res = await getAllArticles(seletedCategory);
             console.log(res?.data?.result);
             setArticles(res?.data?.result);
         };
         fechData();
-    }, []);
+    }, [seletedCategory]);
     return (
         <div className="font-sans bg-gray-50 text-gray-800">
             {/* Header */}
@@ -37,18 +52,21 @@ const Dashboard = () => {
             <section className="p-6">
                 <div className="max-w-5xl mx-auto">
                     <div className="flex gap-4 mb-4 overflow-x-auto">
-                        <button className="px-4 py-2 bg-gray-200 rounded-full hover:bg-gray-300">Technology</button>
-                        <button className="px-4 py-2 bg-gray-200 rounded-full hover:bg-gray-300">Health</button>
-                        <button className="px-4 py-2 bg-gray-200 rounded-full hover:bg-gray-300">Business</button>
-                        <button className="px-4 py-2 bg-gray-200 rounded-full hover:bg-gray-300">Lifestyle</button>
+                        {preference.map((obj) => {
+                            return (
+                                <button onClick={() => setSeletedCategory(obj)} className={`px-4 py-2 ${seletedCategory==obj?' bg-green-500 text-white':"bg-gray-200"} rounded-full hover:bg-gray-300`}>
+                                    {obj}
+                                </button>
+                            );
+                        })}
                     </div>
 
                     {/* Article List */}
-                    <div className="space-y-6">
+                  { articles.length==0?<NoArticlesPage/>: <div className="space-y-6">
                         {articles.map((article) => (
                             <ArticleCard article={article} setArticles={setArticles} />
                         ))}
-                    </div>
+                    </div>}
                 </div>
             </section>
 

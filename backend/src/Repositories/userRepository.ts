@@ -172,17 +172,26 @@ export class UserRepository {
             return null;
         }
     }
-    async getAllArticlesById(userId: string): Promise<any | null> {
+    async getAllArticlesById(userId: string,type:string): Promise<any | null> {
         try {
-            const user = await User.findOne({ _id: userId });
-            const interests = user?.interests;
-            
-            const articles = await Article.find({ category: { $in: interests },blocks:{$nin:userId}})
-                .sort({ _id: -1 })
-                .populate("userId");
+            console.log(type)
+            if(type=='All'){
 
+                const user = await User.findOne({ _id: userId });
+                const interests = user?.interests;
                 
-            return articles;
+                const articles = await Article.find({ category: { $in: interests },blocks:{$nin:userId}})
+                    .sort({ _id: -1 })
+                    .populate("userId");
+    
+                    
+                return articles;
+            }else{
+                const articles = await Article.find({ category: type})
+                    .sort({ _id: -1 })
+                    .populate("userId");
+                    return articles;
+            }
         } catch (error) {
             console.log(error as Error);
             return null;

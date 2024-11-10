@@ -220,9 +220,9 @@ export class UserServices {
             return null;
         }
     }
-    async getAllArticles(userId:string): Promise<Record<string,any> | null> {
+    async getAllArticles(userId:string,type:string): Promise<Record<string,any> | null> {
         try {
-        return await this.userRepository.getAllArticlesById(userId)
+        return await this.userRepository.getAllArticlesById(userId,type)
         } catch (error) {
             console.log(error as Error);
             return null;
